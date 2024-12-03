@@ -6,7 +6,8 @@ interface numProp {
     flip: boolean;
 }
 
-export const NumberBox = ({ num, unit, flip }: numProp) => {
+export const NumberBox = ({ num, unit }: numProp) => {
+
     return (
         <div className="flex bg-transparent flex-col items-center mt-1 px-1">
             <div className="relative bg-none flex flex-col items-center justify-center rounded-lg w-12 h-12 text-base md:text-xl mt-1">

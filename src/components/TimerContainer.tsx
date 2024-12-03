@@ -116,7 +116,7 @@ export const TimerContainer = ({ days, hours, minutes, seconds }: timeProps) => 
 
   useEffect(() => {
     // Update flip states when time changes
-    setFlip((prevFlip) => ({
+    setFlip(() => ({
       days: time.days !== Number(days),
       hours: time.hours !== Number(hours),
       minutes: time.minutes !== Number(minutes),
