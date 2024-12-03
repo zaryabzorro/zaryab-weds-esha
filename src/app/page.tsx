@@ -5,6 +5,7 @@ import { StaticCard1, StaticCard2 } from '@/components/Card1';
 import Card2 from '@/components/Card2';
 import { MendhiCard, BaratCard, WalimaCard } from '@/components/Card3';
 
+// Panel data
 const panels = [
   { id: 1, component: <StaticCard1 /> },
   { id: 2, component: <StaticCard2 /> },
@@ -16,10 +17,11 @@ const panels = [
 
 export default function AnimatedPanels() {
   const [currentPanel, setCurrentPanel] = useState(0);
+  const isAnimating = useRef(false);
   const touchStartY = useRef<number | null>(null);
   const touchEndY = useRef<number | null>(null);
-  const isAnimating = useRef(false);
 
+  // Handle swipe gestures for touch devices
   const handleTouchStart = (event: React.TouchEvent) => {
     touchStartY.current = event.touches[0].clientY;
   };
@@ -29,7 +31,11 @@ export default function AnimatedPanels() {
   };
 
   const handleTouchEnd = () => {
-    if (touchStartY.current !== null && touchEndY.current !== null && !isAnimating.current) {
+    if (
+      touchStartY.current !== null &&
+      touchEndY.current !== null &&
+      !isAnimating.current
+    ) {
       const distance = touchStartY.current - touchEndY.current;
       const swipeThreshold = 50;
       if (distance > swipeThreshold) {
@@ -37,17 +43,24 @@ export default function AnimatedPanels() {
       } else if (distance < -swipeThreshold) {
         setCurrentPanel((prev) => Math.max(prev - 1, 0));
       }
-      isAnimating.current = true;
-      setTimeout(() => (isAnimating.current = false), 800);
+      lockAnimation();
     }
     touchStartY.current = null;
     touchEndY.current = null;
   };
 
+  // Handle scroll gestures for desktop
   const handleScroll = (event: WheelEvent) => {
     if (isAnimating.current) return;
     const direction = event.deltaY > 0 ? 1 : -1;
-    setCurrentPanel((prev) => Math.max(0, Math.min(prev + direction, panels.length - 1)));
+    setCurrentPanel((prev) =>
+      Math.max(0, Math.min(prev + direction, panels.length - 1))
+    );
+    lockAnimation();
+  };
+
+  // Prevent rapid animations
+  const lockAnimation = () => {
     isAnimating.current = true;
     setTimeout(() => (isAnimating.current = false), 800);
   };
@@ -59,7 +72,7 @@ export default function AnimatedPanels() {
 
   return (
     <div
-      className="bg-black overflow-hidden h-screen relative"
+      className="bg-black h-screen w-full overflow-hidden relative"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -67,16 +80,16 @@ export default function AnimatedPanels() {
       {panels.map((panel, index) => (
         <motion.div
           key={panel.id}
-          initial={{ opacity: 0, scale: 0.95, x: '100%' }}
+          initial={{ y: '100%', opacity: 0 }}
           animate={{
+            y: index === currentPanel ? '0%' : index > currentPanel ? '100%' : '-100%',
             opacity: index === currentPanel ? 1 : 0,
-            scale: index === currentPanel ? 1 : 0.95,
-            x: index === currentPanel ? '0%' : '100%',
           }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className={`panel absolute inset-0 w-full h-screen ${
-            index === currentPanel ? 'z-10' : 'z-0'
-          }`}
+          transition={{
+            duration: 2, // Shorter duration for quicker transitions
+            ease: [0.25, 0.8, 0.5, 1], // Smooth bezier curve
+          }}
+          className="absolute inset-0 w-full h-screen"
         >
           {panel.component}
         </motion.div>

@@ -4,8 +4,8 @@ import Image from "next/image";
 import img1 from "@/images/img1.svg";
 import img2 from "@/images/img2.svg";
 import img3 from "@/images/img3.svg";
-import location from "@/images/location.svg";
 import { italianno, caramel } from '@/components/Fonts';
+import { TimerContainer } from "./TimerContainer";
 
 type TimerValues = {
   days: number;
@@ -40,23 +40,13 @@ const Timer = ({ eventDate }: { eventDate: Date | null }) => {
   if (!timer) return null;
 
   return (
-    <div className="mt-4 flex gap-2 text-center bg-white text-[#934B4BC4] p-1">
-      <div>
-        <span className="text-lg font-bold">{timer.days}</span>
-        <p className="text-sm">Days</p>
-      </div>
-      <div>
-        <span className="text-lg font-bold">{timer.hours}</span>
-        <p className="text-sm">Hours</p>
-      </div>
-      <div>
-        <span className="text-lg font-bold">{timer.minutes}</span>
-        <p className="text-sm">Minutes</p>
-      </div>
-      <div>
-        <span className="text-lg font-bold">{timer.seconds}</span>
-        <p className="text-sm">Seconds</p>
-      </div>
+    <div className="mt-4 flex gap-2 text-center bg-transparent text-[#934B4BC4] p-1">
+      <TimerContainer
+        days={timer.days}
+        hours={timer.hours}
+        minutes={timer.minutes}
+        seconds={timer.seconds}
+      />
     </div>
   );
 };
@@ -125,8 +115,10 @@ export const WalimaCard = () => (
       </div>
       <h4 className="text-sm mt-4 italic">Lunch Time: 02:00 PM</h4>
       <div className="flex justify-center items-center space-y-1">
-        <Image src={location} alt="location" className="pt-2" />
-        <h5 className="text-xs mt-2">White Castle Marquee Miani</h5>
+        <Timer eventDate={new Date("2024-12-22T13:00:00")} />
+
+        {/* <Image src={location} alt="location" className="pt-2" /> */}
+        {/* <h5 className="text-xs mt-2">White Castle Marquee Miani</h5> */}
       </div>
     </div>
   </div>
