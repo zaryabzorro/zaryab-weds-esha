@@ -14,6 +14,7 @@ type TimerValues = {
   seconds: number;
 } | null;
 
+
 const Timer = ({ eventDate }: { eventDate: Date | null }) => {
   const [timer, setTimer] = useState<TimerValues>(null);
 
@@ -64,11 +65,11 @@ export const MendhiCard = () => (
         </div>
         <div className="border border-white h-28"></div>
         <div className="leading-[50px]">
-          <h3 className={`${caramel.className} text-[24px]`}>01:00 to 10:00</h3>
+          <h3 className={`${caramel.className} text-[24px]`}>06:00 to 10:00</h3>
           <h3 className={`${caramel.className} text-[36px] text-center`}>PM</h3>
         </div>
       </div>
-      <Timer eventDate={new Date("2024-12-20T13:00:00")} />
+      <Timer eventDate={new Date("2024-12-20T17:00:00")} />
     </div>
   </div>
 );
@@ -86,12 +87,12 @@ export const BaratCard = () => (
         </div>
         <div className="border border-white h-28"></div>
         <div className="leading-[50px]">
-          <h3 className={`${caramel.className} text-[64px]`}>01:00</h3>
+          <h3 className={`${caramel.className} text-[64px]`}>12:00</h3>
           <h3 className={`${caramel.className} text-[36px] text-center`}>PM</h3>
         </div>
       </div>
-      <h4 className="text-sm mt-4 italic">Sehra Bandi 12:00 PM</h4>
-      <Timer eventDate={new Date("2024-12-21T13:00:00")} />
+      <h4 className="text-sm mt-4 italic">Sehra Bandi 11:00 AM</h4>
+      <Timer eventDate={new Date("2024-12-21T10:00:00")} />
     </div>
   </div>
 );
@@ -116,7 +117,6 @@ export const WalimaCard = () => (
       <h4 className="text-sm mt-4 italic">Lunch Time: 02:00 PM</h4>
       <div className="flex justify-center items-center space-y-1">
         <Timer eventDate={new Date("2024-12-22T13:00:00")} />
-
         {/* <Image src={location} alt="location" className="pt-2" /> */}
         {/* <h5 className="text-xs mt-2">White Castle Marquee Miani</h5> */}
       </div>

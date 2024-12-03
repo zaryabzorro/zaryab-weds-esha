@@ -18,10 +18,10 @@ export const NumberBox = ({ num, unit, flip }: numProp) => {
 
                 <div className="rounded-b-lg rounded-t-lg bg-[#2c2e3f] w-full h-full"></div>
 
-                <div
+                {/* <div
                     className={`absolute w-full h-1/2 top-0 rounded-t-lg z-5 ${flip ? 'animate-flip bg-rose-200' : 'bg-transparent'
                         }`}
-                ></div>
+                ></div> */}
 
                 {/* Two Small Dots */}
                 <div className="absolute -right-0.5 top-[22px] rounded-full w-[4px] h-[4px] bg-[#1e1f29]"></div>
