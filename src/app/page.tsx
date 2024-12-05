@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { StaticCard1, StaticCard2 } from '@/components/Card1';
-import Card2 from '@/components/Card2';
+// import Card2 from '@/components/Card2';
 import { MendhiCard, BaratCard, WalimaCard } from '@/components/Card3';
 
 // Panel data
