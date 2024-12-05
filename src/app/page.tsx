@@ -9,7 +9,7 @@ import { MendhiCard, BaratCard, WalimaCard } from '@/components/Card3';
 const panels = [
   { id: 1, component: <StaticCard1 /> },
   { id: 2, component: <StaticCard2 /> },
-  { id: 3, component: <Card2 /> },
+  // { id: 3, component: <Card2 /> },
   { id: 4, component: <MendhiCard /> },
   { id: 5, component: <BaratCard /> },
   { id: 6, component: <WalimaCard /> },
